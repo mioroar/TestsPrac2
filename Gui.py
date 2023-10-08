@@ -52,13 +52,32 @@ def start_game():
 
 
 def PasswordsDisplay(x):
-    if x == '':
-        return False
-    else:
+    editor = Text()
+    editor.pack(fill=BOTH, expand=1)
+    with open(x, "r") as file:
+        text = file.read()
+        editor.delete("1.0", END)
+        editor.insert("1.0", text)
+        file.close()
+
+    # сохраняем текст из текстового поля в файл
+    def save_file():
+        text = editor.get("1.0", END)
+        with open(x, "w") as file:
+            file.write(text)
+
+    save_button = ttk.Button(text="Сохранить файл", command=save_file)
+    save_button.place(relx=1, rely=0.9, anchor='ne')
+
+    def readnew():
         with open(x, "r") as file:
-            text = file.read()
+            text1 = file.read()
             file.close()
-        return text
+        return text1
+
+    txt =readnew()
+    return txt
+
 
 
 btn = ttk.Button(text="Показать пароли", command=lambda: PasswordsDisplay(x), state="disabled")
