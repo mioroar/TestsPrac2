@@ -1,3 +1,11 @@
+from tkinter import *
+from tkinter import ttk
+
+import random
+root = Tk()
+root.title("Менеджер паролей")
+root.geometry("300x300")
+
 def start_game():
     count = 0
     print('Набирание 5 очков!')
@@ -23,3 +31,11 @@ def PasswordsDisplay(x):
 
 print(PasswordsDisplay('user.txt'))
 print(PasswordsDisplay(''))
+
+
+btn = ttk.Button(text="Показать пароли", command=lambda: PasswordsDisplay(x), state="disabled")
+btn.pack()  # размещение в окне
+btn1 = ttk.Button(text="Выполнить задание", command=start_game)
+btn1.pack()
+
+root.mainloop()
