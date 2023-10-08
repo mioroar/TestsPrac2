@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import random
 
-count = 0
+c, count = 0, 0
 x = 'user.txt'
 
 root = Tk()
@@ -14,9 +14,10 @@ def win():
     return True
 
 
-def start_game():
+def start_game(c):
     try:
-
+        if c != 0:
+            return False
         window1 = Toplevel()
         window1.title("Сначала набери 5 очков!")
         c = Canvas(window1, width=500, height=500, bg="white")
@@ -63,7 +64,7 @@ def PasswordsDisplay(x):
             text = file.read()
             editor.delete("1.0", END)
             editor.insert("1.0", text)
-        f   ile.close()
+            file.close()
 
         # сохраняем текст из текстового поля в файл
         def save_file():
@@ -89,7 +90,7 @@ def PasswordsDisplay(x):
 
 btn = ttk.Button(text="Показать пароли", command=lambda: PasswordsDisplay(x), state="disabled")
 btn.pack()  # размещение в окне
-btn1 = ttk.Button(text="Выполнить задание", command=start_game)
+btn1 = ttk.Button(text="Выполнить задание", command=lambda: start_game(c))
 btn1.pack()
 
 root.mainloop()
