@@ -20,3 +20,15 @@ def PasswordsDisplay(x : str):
             return text
     except Exception as e:
         return None
+
+
+def test_start_game():
+    assert start_game(5) == True
+    assert start_game(4) == False
+    assert start_game(0) == None
+    assert start_game(None) == None
+
+def test_PasswordsDisplay():
+    assert PasswordsDisplay('user.txt') == 'aaa'
+    assert PasswordsDisplay('') == False
+    assert PasswordsDisplay(None) == None
